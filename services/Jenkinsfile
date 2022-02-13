@@ -1,0 +1,29 @@
+pipeline {
+    agent none
+    stages {
+        stage('Back-end-GraphQL') {
+            agent {
+                docker { image 'node:alpine3.14' }
+            }
+            steps {
+                sh 'mvn --version'
+            }
+        }
+        stage('Back-end-Postgres') {
+            agent {
+                docker { image 'maven:3.14-alpine' }
+            }
+            steps {
+                sh 'mvn --version'
+            }
+        }
+        stage('Front-end-React') {
+            agent {
+                docker { image 'node:alpine3.14' }
+            }
+            steps {
+                sh 'node --version'
+            }
+        }
+    }
+}

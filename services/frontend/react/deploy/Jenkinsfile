@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'node:6-alpine'
-            args '-p 9010:3000'
+            args '-p 9010:3000 -v ../../../../app/frontend/react:/var/www/html'
         }
     }
     environment {
