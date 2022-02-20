@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { gql, useMutation } from "@apollo/client"
 
+// Definicion de la mutacion para Crear un post
 const CREATE_POST = gql`
 mutation CreatePost($title: String!, $content: String!){
   postCreate(post: {
@@ -20,24 +21,28 @@ mutation CreatePost($title: String!, $content: String!){
         name
       }
     }
-    userErrors {
-      message
-    }
   }
 }
 `
 
 export default function AddPostModal() {
+  // Usar el State de React
   const [show, setShow] = useState(false);
 
+  // Ejecutar la mutacion de Crear post
   const [ createPost, { data, loading } ] = useMutation(CREATE_POST)
 
+  // Funcion para cerrar el modal
   const handleClose = () => setShow(false);
+  // Funcion para abrir el modal
   const handleShow = () => setShow(true);
 
+  // Usar el State para la variable contenido para que cuando cambie se recargue el componente
   const [content, setContent] = useState("");
+  // Usar el State para la variable titulo para que cuando cambie se recargue el componente
   const [title, setTitle] = useState("");
 
+  // Usar el State para la variable error para que cuando aparezca un error se recargue el componente
   const [error, setError] = useState(null);
 
   // Se ejecuta cada vez que cambia el data
@@ -51,7 +56,7 @@ export default function AddPostModal() {
     }
   }, [data])
 
-
+  // Función para cuando creamos el post
   const handleClick = () => {
     if(!content || !title) setError("Debes introducir titulo y contenido");
     else createPost({

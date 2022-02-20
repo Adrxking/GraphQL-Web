@@ -34,8 +34,10 @@ export const postResolvers = {
                 }
             }
 
+            // Obtener el titulo y el contenido del post
             const { title, content } = post
             
+            // Si no existe el contenido o el titulo se devuelve un mensaje de error
             if(!title || !content) {
                 return {
                     userErrors: [{
@@ -45,6 +47,7 @@ export const postResolvers = {
                 }
             }
 
+            // Crear el post y devolver la informacion del post
             return {
                 userErrors: [],
                 post: prisma.post.create({

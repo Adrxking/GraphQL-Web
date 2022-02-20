@@ -7,7 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client"
 import { setContext } from "@apollo/client/link/context"
 
-// HTTP uri
+// Establecer conexión con la BD
 const httpLink = createHttpLink({
   uri: "http://localhost:4000/graphql",
 })
@@ -24,7 +24,7 @@ const authLink = setContext((_, { headers }) => {
   } 
 })
 
-// Crear el cliente apollo conectado a nuestro graphql server y con cache
+// Crear el cliente apollo conectado a nuestro GraphQL Server usando también cache
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),

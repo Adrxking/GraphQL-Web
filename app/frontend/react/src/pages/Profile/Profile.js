@@ -4,6 +4,7 @@ import AddPostModal from "../../components/AddPostModal/AddPostModal";
 import Post from "../../components/Post/Post";
 import { gql, useQuery } from "@apollo/client"
 
+// Definicion de la query para obtener el perfil
 const GET_PROFILE = gql`
   query Profile($userId: ID!) {
     profile(userId: $userId) {
@@ -26,9 +27,10 @@ const GET_PROFILE = gql`
 `
 
 export default function Profile() {
-  // Obtener el parametro id del enlace
+  // Obtener el parametro id de la URL
   const { id } = useParams();
 
+  // Ejecutar la query para obtener el perfil que estamos consultando
   const { data, error, loading } = useQuery(GET_PROFILE, {
     variables: {
       userId: id,
@@ -41,6 +43,7 @@ export default function Profile() {
     // Devolver pagina de cargando mientras cargan los datos
     if(loading) return <div>Cargando</div>
 
+    // Asignar a la constante profile el perfil de la query realizada
     const { profile } = data
 
 
