@@ -2,10 +2,11 @@
   "name": "graphql-prisma-react-postgres",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "nodemon src/index.ts --watch ./**/*.ts --ext ts,js,json --exec ./node_modules/.bin/ts-node"
+    "start": "node dist/index.js",
+    "start:dev": "nodemon src/index.ts --watch ./**/*.ts --ext ts,js,json --exec ./node_modules/.bin/ts-node",
+    "build": "npx tsc -p . && ncp src/schema build/schema"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,7 @@
     "dataloader": "^2.0.0",
     "graphql": "^16.3.0",
     "jsonwebtoken": "^8.5.1",
+    "npc": "^0.0.1",
     "prisma": "^3.8.1",
     "validator": "^13.7.0"
   },
